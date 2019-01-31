@@ -19,8 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.set('view engine', 'pug')
 
 mongo.connect(
-    process.env.DATABASE ||
-        'mongodb://fcc-advancednode:fcc-advancednode7@ds117545.mlab.com:17545/fcc-advancednode',
+    process.env.DATABASE,
     (err, db) => {
         if (err) {
             console.log('Database error: ' + err)
@@ -29,7 +28,7 @@ mongo.connect(
 
             app.use(
                 session({
-                    secret: process.env.SESSION_SECRET || 'secret',
+                    secret: process.env.SESSION_SECRET,
                     resave: true,
                     saveUninitialized: true,
                 })
